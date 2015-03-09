@@ -31,6 +31,25 @@ class EstoriaDAO implements IEstoriaDAO{
 	}
 
 	/**
+	 * Obtem registro por ID
+	 *
+	 * @param String $idSprint 
+	 * @return Estoria Array 
+	 */
+	public function loadBySprint($idSprint){
+		$sql = new SqlSelect('estoria');
+		$filtroID = new Filtro('id_sprint', OperadorSql::OIGUAL, $idSprint);
+		$foiExcluido = Shared::filtroFoiExcluido(false);
+		$criterio = new Criterio($foiExcluido);
+		$criterio->add($filtroID);
+		
+		$sql->setCriterio($criterio);
+		$stm = Conexao::prepare($sql->getInstrucaoSql());
+		$stm->execute();
+		return $stm->fetchAll();
+	}
+
+	/**
 	 * Obtem todos os registros da tabela
 	 */
 	public function queryAll($idUsuarioLogado){

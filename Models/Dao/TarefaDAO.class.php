@@ -31,6 +31,25 @@ class TarefaDAO implements ITarefaDAO{
 	}
 
 	/**
+	 * Obtem registro por ID
+	 *
+	 * @param String $idEstoria 
+	 * @return Tarefa Array 
+	 */
+	public function loadByEstoria($idEstoria){
+		$sql = new SqlSelect('tarefa');
+		$filtroID = Filtro('idEstoria', OperadorSql::OIGUAL, $idEstoria);
+		$foiExcluido = Shared::filtroFoiExcluido(false);
+		$criterio = new Criterio($foiExcluido);
+		$criterio->add($filtroID);
+		
+		$sql->setCriterio($criterio);
+		$stm = Conexao::prepare($sql->getInstrucaoSql());
+		$stm->execute();
+		return $stm->fetchAll();
+	}
+
+	/**
 	 * Obtem todos os registros da tabela
 	 */
 	public function queryAll($idUsuarioLogado){
