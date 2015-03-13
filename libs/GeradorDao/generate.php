@@ -7,7 +7,7 @@ require_once('templates/class/dao/sql/QueryExecutor.class.php');
 require_once('templates/class/dao/sql/Transaction.class.php');
 require_once('templates/class/dao/sql/SqlQuery.class.php');
 require_once('templates/class/Template.php');
-$data = Date('d/m/Y');
+//$data = Date('d/m/Y');
 $autor = 'Daniel Custódio da Silva';
 
 function generate(){
@@ -60,7 +60,7 @@ function createIncludeFile($ret){
 	}
 	$template = new Template('templates/include_dao.tpl');
 	$template->set('include', $str);
-	$template->set('date', Date('d/m/Y'));
+	//$template->set('date', Date('d/m/Y'));
 	$template->set('autor', 'Daniel Custódio da Silva');
 	$template->write('generated/includeModels.php');
 }
@@ -94,7 +94,7 @@ function createDAOFactory($ret){
 	}
 	$template = new Template('templates/DAOFactory.tpl');
 	$template->set('content', $str);
-	$template->set('date', Date('d/m/Y'));
+	//$template->set('date', Date('d/m/Y'));
 	$template->set('autor', 'Daniel Custódio da Silva');
 	$template->set('campos_include',$includes);
 	$template->write('generated/class/IDao/DAOFactory.class.php');
@@ -155,7 +155,7 @@ function getnerateDomainObjects($ret){
 		}
 		// fim
 		$template->set('variables', $fields);
-		$template->set('date', Date('d/m/Y'));
+		//$template->set('date', Date('d/m/Y'));
 		$template->set('autor', 'Daniel Custódio da Silva');
 		$template->write('generated/class/Dto/'.$clazzName.'.class.php');
 	}
@@ -230,7 +230,7 @@ function getnerateDAOExtObjects($ret){
 		$template->set('question_marks', $questionMarks);
 		$template->set('parameter_setter',$parameterSetter);
 		$template->set('read_row',$readRow);
-		$template->set('date', Date('d/m/Y'));
+		//$template->set('date', Date('d/m/Y'));
 		$template->set('autor', 'Daniel Custódio da Silva');
 		$template->set('queryByFieldFunctions',$queryByField);		
 		$template->set('deleteByFieldFunctions',$deleteByField);	
@@ -349,7 +349,7 @@ function getnerateRestControllers($ret){
 		$template->set('question_marks', $questionMarks);
 		$template->set('parameter_setter',$parameterSetter);
 		$template->set('read_row',$readRow);
-		$template->set('date', date("Y-m-d H:i"));
+		//$template->set('date', date("Y-m-d H:i"));
 		$template->set('queryByFieldControls',$queryByFieldControls);		
 		$template->write('generated/class/rest/'.getClazzName($tableName).'Controller.class.php');
 	}
@@ -427,7 +427,7 @@ function getnerateDAOObjects($ret){
 		$template->set('table_name', $tableName);
 		$template->set('var_name', getVarName($tableName));
 		//daniel
-		$template->set('date', Date('d/m/Y'));
+		//$template->set('date', Date('d/m/Y'));
 		$template->set('autor', 'Daniel Custódio da Silva');
 		//fim
 		$insertFields = substr($insertFields,0, strlen($insertFields)-2);
@@ -535,7 +535,7 @@ function getnerateIDAOObjects($ret){
 		$template->set('dao_clazz_name', $clazzName );
 		$template->set('table_name', $tableName);
 		$template->set('var_name', getVarName($tableName));
-		$template->set('date', Date('d/m/Y'));
+		//$template->set('date', Date('d/m/Y'));
 		$template->set('autor', 'Daniel Custódio da Silva');
 		$s = '';
 		$s2 = '';

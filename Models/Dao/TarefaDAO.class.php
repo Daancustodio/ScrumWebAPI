@@ -38,7 +38,7 @@ class TarefaDAO implements ITarefaDAO{
 	 */
 	public function loadByEstoria($idEstoria){
 		$sql = new SqlSelect('tarefa');
-		$filtroID = Filtro('idEstoria', OperadorSql::OIGUAL, $idEstoria);
+		$filtroID = new Filtro('id_estoria', OperadorSql::OIGUAL, $idEstoria);
 		$foiExcluido = Shared::filtroFoiExcluido(false);
 		$criterio = new Criterio($foiExcluido);
 		$criterio->add($filtroID);

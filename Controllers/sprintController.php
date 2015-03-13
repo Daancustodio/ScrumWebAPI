@@ -63,6 +63,13 @@ include_once '/../Models/IDao/DAOFactory.class.php';
         $result->dataInicio = date('Y-m-d', strtotime($result->dataInicio));
         $result->dataConclusao = date('Y-m-d', strtotime($result->dataConclusao));
 
+        $result->estorias = DAOFactory::getEstoriaDAO()->loadBySprint($id);
+		
+		foreach ($result->estorias as $value) {
+			$value->tarefas =  DAOFactory::getTarefaDAO()->loadByEstoria($value->id);
+		} 
+		//var_dump($result);              
+		
 		formatJson($result);
 	});
 

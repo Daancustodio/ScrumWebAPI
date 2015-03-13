@@ -61,6 +61,12 @@ include_once '/../Models/IDao/DAOFactory.class.php';
 		formatJson($result);
 	});
 
+	$app->get('/tarefasByEstoria/:id', function($idEstoria){		
+		
+		$result = DAOFactory::getTarefaDAO()->loadByEstoria($idEstoria);
+		formatJson($result);
+	});
+
 	
 
 

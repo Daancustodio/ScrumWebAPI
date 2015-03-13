@@ -62,9 +62,4 @@ include_once '/../Models/IDao/DAOFactory.class.php';
 		formatJson($result);
 	});
 
-	$app->get('/estoriasBySprint/:id', function($id){		
-		
-		$result = DAOFactory::getEstoriaDAO()->loadBySprint($id);
-                
-		formatJson($result);
-	});
+	
