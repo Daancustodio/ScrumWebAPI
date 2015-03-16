@@ -2,7 +2,7 @@
 
 include_once '/../Models/IDao/DAOFactory.class.php';
 
-	$rota = '/usuariopapeltime';
+	$rota = '/membroTime';
 	
 	/**
 	 * Deleta Usuariopapeltime por chave primaria
@@ -11,7 +11,7 @@ include_once '/../Models/IDao/DAOFactory.class.php';
 	 * @url DELETE /Usuariopapeltime/$id
 	 */
 	$app->delete($rota . "/:id",function ($id){
-            DAOFactory::getUsuariopapeltimeDAO()->delete($id);
+            DAOFactory::getMembroTimeDAO()->delete($id);
         });
 
 	/**
@@ -27,9 +27,9 @@ include_once '/../Models/IDao/DAOFactory.class.php';
 		
 		if ($objUsuariopapeltime->id < 1 ){
                     $objUsuariopapeltime->id = NULL;
-                    DAOFactory::getUsuariopapeltimeDAO()->insert($objUsuariopapeltime);
+                    DAOFactory::getMembroTimeDAO()->insert($objUsuariopapeltime);
 		} else {                    
-                    DAOFactory::getUsuariopapeltimeDAO()->update($objUsuariopapeltime);                    
+                    DAOFactory::getMembroTimeDAO()->update($objUsuariopapeltime);                    
 		}
 
 		formatJson($objUsuariopapeltime);
@@ -43,8 +43,10 @@ include_once '/../Models/IDao/DAOFactory.class.php';
 	 * @url GET /Usuariopapeltime	 
 	 */
 	$app->get($rota, function($idUser = null){
-		
-		$result = DAOFactory::getUsuariopapeltimeDAO()->queryAllOrderBy(' id desc ',$idUser);
+		if($idUser == null){
+			$idUser = 1;
+		}
+		$result = DAOFactory::getMembroTimeDAO()->queryAllOrderBy(' id desc ',$idUser);
 		
 		formatJson($result);
 	});
@@ -56,7 +58,7 @@ include_once '/../Models/IDao/DAOFactory.class.php';
 	 */
 	$app->get($rota . '/:id', function($id){		
 		
-		$result = DAOFactory::getUsuariopapeltimeDAO()->load($id);
+		$result = DAOFactory::getMembroTimeDAO()->load($id);
                 
 		formatJson($result);
 	});

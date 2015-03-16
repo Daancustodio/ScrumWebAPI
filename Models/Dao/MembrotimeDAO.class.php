@@ -43,7 +43,7 @@ class MembrotimeDAO implements IMembrotimeDAO{
 		$criterio = new Criterio($foiExcluido);
 		if (!is_null($idUsuarioLogado)) {			
 			$filtroUsuarioLogado = Shared::filtroUsuarioLogado($idUsuarioLogado);
-			$filtroTodos = Shared::filtroUsuarioLogado(NULL);
+			$filtroTodos = Shared::filtroUsuarioLogado(null);
 			$criterio->add($filtroUsuarioLogado);
 			$criterio->add($filtroTodos);
 		}else{
@@ -54,6 +54,7 @@ class MembrotimeDAO implements IMembrotimeDAO{
 		$sql->setCriterio($criterio);		
 
 		$stm = Conexao::prepare($sql->getInstrucaoSql());
+
 		$stm->execute();
 		return $stm->fetchAll();
 	}
@@ -75,8 +76,8 @@ class MembrotimeDAO implements IMembrotimeDAO{
 		if (!is_null($idUsuarioLogado)) {			
 			$filtroUsuarioLogado = Shared::filtroUsuarioLogado($idUsuarioLogado);
 			$filtroTodos = Shared::filtroUsuarioLogado(NULL);
-            $criterio->add($filtroUsuarioLogado);
-			$criterio->add($filtroTodos);
+            $criterio->add($filtroUsuarioLogado);	
+            $criterio->add($filtroTodos,OperadorSql::OOR);		
 		}else{
 			$filtroTodos = Shared::filtroUsuarioLogado(NULL);            
 			$criterio->add($filtroTodos);
@@ -86,6 +87,8 @@ class MembrotimeDAO implements IMembrotimeDAO{
 		$sql->setCriterio($criterio);		
 
 		$stm = Conexao::prepare($sql->getInstrucaoSql());
+		/*var_dump($sql->getInstrucaoSql());
+		break;*/
 		$stm->execute();
 		return $stm->fetchAll();
 	}
