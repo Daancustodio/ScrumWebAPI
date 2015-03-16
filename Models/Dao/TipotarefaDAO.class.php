@@ -97,9 +97,9 @@ class TipotarefaDAO implements ITipotarefaDAO{
 	public function delete($id){
 		
 		$sql = new SqlUpdate('tipotarefa');
-		
 		$sql->addColunaValor('foiExcluido', TRUE);
-		$sql->addColunaValor('dataExclusao', 'now()',TRUE);	
+		$sql->addColunaValor('dataExclusao', 'now()',TRUE);
+	
 		
 		$foiExcluido = Shared::filtroFoiExcluido(FALSE);        
 		$criterio = new Criterio($foiExcluido);
@@ -116,12 +116,13 @@ class TipotarefaDAO implements ITipotarefaDAO{
  	 */
 	public function insert($tipotarefa){
 	
-		$tipotarefa = $this->readRow($tipotarefa);
+		//$tipotarefa = $this->readRow($tipotarefa);
 		
 		$sql = new SqlInsert('tipotarefa');
 		
-		$sql->addColunaValor('descricao', $tipotarefa->getDescricao());
-		$sql->addColunaValor('id_usuario', $tipotarefa->getIdUsuario());
+		$sql->addColunaValor('titulo', $tipotarefa->titulo);
+		$sql->addColunaValor('descricao', $tipotarefa->descricao);
+		//$sql->addColunaValor('idUsuario', $tipotarefa->idUsuario);
         	
 		$sql->addColunaValor('foiExcluido', FALSE);
 		$sql->addColunaValor('dataCriacao', 'now()',TRUE);
@@ -141,11 +142,12 @@ class TipotarefaDAO implements ITipotarefaDAO{
 		$sql = new SqlUpdate('tipotarefa');
         
 		$foiExcluido = Shared::filtroFoiExcluido(FALSE);
-		$filtroID = Shared::filtroID($tipotarefa->getId());
+		$filtroID = Shared::filtroID($papel->id);
 	
 		
-		$sql->addColunaValor('descricao', $tipotarefa->getDescricao());
-		$sql->addColunaValor('id_usuario', $tipotarefa->getIdUsuario());
+		$sql->addColunaValor('titulo', $tipotarefa->titulo);
+		$sql->addColunaValor('descricao', $tipotarefa->descricao);
+		$sql->addColunaValor('idUsuario', $tipotarefa->idUsuario);
         
 			
 		$sql->addColunaValor('foiExcluido', FALSE);
@@ -197,9 +199,10 @@ class TipotarefaDAO implements ITipotarefaDAO{
 	protected function readRow($row){
 		$tipotarefa = new Tipotarefa();
 		
-		$tipotarefa->id = (property_exists($row, 'id')) ? $row->id : NULL;
-		$tipotarefa->descricao = (property_exists($row, 'descricao')) ? $row->descricao : NULL;
-		$tipotarefa->idUsuario = (property_exists($row, 'id_usuario')) ? $row->id_usuario : NULL;
+		$tipotarefa->id = $row->id;
+		$tipotarefa->titulo = $row->titulo;
+		$tipotarefa->descricao = $row->descricao;
+		$tipotarefa->idUsuario = $row->idUsuario;
 
 		return $tipotarefa;
 	}

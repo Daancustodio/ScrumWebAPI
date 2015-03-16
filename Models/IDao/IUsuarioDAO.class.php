@@ -3,7 +3,7 @@
  * Interface DAO
  *
  * @author: Daniel Custódio da Silva
- * @Data: 27/10/2014
+ * @Data: ${date}
  */
 
 interface IUsuarioDAO{

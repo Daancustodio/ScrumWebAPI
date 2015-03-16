@@ -97,9 +97,9 @@ class ProjetoDAO implements IProjetoDAO{
 	public function delete($id){
 		
 		$sql = new SqlUpdate('projeto');
-		
 		$sql->addColunaValor('foiExcluido', TRUE);
-		$sql->addColunaValor('dataExclusao', 'now()',TRUE);	
+		$sql->addColunaValor('dataExclusao', 'now()',TRUE);
+	
 		
 		$foiExcluido = Shared::filtroFoiExcluido(FALSE);        
 		$criterio = new Criterio($foiExcluido);
@@ -116,13 +116,13 @@ class ProjetoDAO implements IProjetoDAO{
  	 */
 	public function insert($projeto){
 	
-		$projeto = $this->readRow($projeto);
+		//$projeto = $this->readRow($projeto);
 		
 		$sql = new SqlInsert('projeto');
 		
-		$sql->addColunaValor('titulo', $projeto->getTitulo());
-		$sql->addColunaValor('descricao', $projeto->getDescricao());
-		$sql->addColunaValor('id_usuario', $projeto->getIdUsuario());
+		$sql->addColunaValor('titulo', $projeto->titulo);
+		$sql->addColunaValor('descricao', $projeto->descricao);
+		//$sql->addColunaValor('idUsuario', $projeto->idUsuario);
         	
 		$sql->addColunaValor('foiExcluido', FALSE);
 		$sql->addColunaValor('dataCriacao', 'now()',TRUE);
@@ -142,12 +142,12 @@ class ProjetoDAO implements IProjetoDAO{
 		$sql = new SqlUpdate('projeto');
         
 		$foiExcluido = Shared::filtroFoiExcluido(FALSE);
-		$filtroID = Shared::filtroID($projeto->getId());
+		$filtroID = Shared::filtroID($papel->id);
 	
 		
-		$sql->addColunaValor('titulo', $projeto->getTitulo());
-		$sql->addColunaValor('descricao', $projeto->getDescricao());
-		$sql->addColunaValor('id_usuario', $projeto->getIdUsuario());
+		$sql->addColunaValor('titulo', $projeto->titulo);
+		$sql->addColunaValor('descricao', $projeto->descricao);
+		$sql->addColunaValor('idUsuario', $projeto->idUsuario);
         
 			
 		$sql->addColunaValor('foiExcluido', FALSE);
@@ -199,10 +199,10 @@ class ProjetoDAO implements IProjetoDAO{
 	protected function readRow($row){
 		$projeto = new Projeto();
 		
-		$projeto->id = (property_exists($row, 'id')) ? $row->id : NULL;
-		$projeto->titulo = (property_exists($row, 'titulo')) ? $row->titulo : NULL;
-		$projeto->descricao = (property_exists($row, 'descricao')) ? $row->descricao : NULL;
-		$projeto->idUsuario = (property_exists($row, 'id_usuario')) ? $row->id_usuario : NULL;
+		$projeto->id = $row->id;
+		$projeto->titulo = $row->titulo;
+		$projeto->descricao = $row->descricao;
+		$projeto->idUsuario = $row->idUsuario;
 
 		return $projeto;
 	}

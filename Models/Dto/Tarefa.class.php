@@ -3,12 +3,13 @@
 	 * Objeto representa a tabela 'tarefa'
 	 *
      	 * @author: Daniel Custódio da Silva
-     	 * @Data: 27/10/2014	 
+     	 * @Data: ${date}	 
 	 */
 
 class Tarefa{
 
 	public $id;
+	public $titulo;
 	public $descricao;
 	public $horasEstimativa;
 	public $horasEfetiva;
@@ -25,6 +26,12 @@ class Tarefa{
 	}
 	public function setId($id) {
 		$this->id = $id;
+	}
+	public function getTitulo() {
+		return $this->titulo;
+	}
+	public function setTitulo($titulo) {
+		$this->titulo = $titulo;
 	}
 	public function getDescricao() {
 		return $this->descricao;

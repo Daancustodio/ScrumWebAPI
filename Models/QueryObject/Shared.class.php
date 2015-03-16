@@ -49,7 +49,7 @@ abstract Class Shared {
         }else {
             $operador = OperadorSql::OIGUAL;
         }
-        return new Filtro('id_usuario', $operador, $idUsuarioLogado);
+        return new Filtro('idUsuario', $operador, $idUsuarioLogado);
     }
     
     public static function filtroID($id) {

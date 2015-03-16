@@ -116,12 +116,13 @@ class PapelDAO implements IPapelDAO{
  	 */
 	public function insert($papel){
 	
-		$papel = $this->readRow($papel);
+		//$papel = $this->readRow($papel);
 		
 		$sql = new SqlInsert('papel');
 		
-		$sql->addColunaValor('descricao', $papel->getDescricao());
-		$sql->addColunaValor('id_usuario', $papel->getIdUsuario());
+		$sql->addColunaValor('titulo', $papel->titulo);
+		$sql->addColunaValor('descricao', $papel->descricao);
+		//$sql->addColunaValor('idUsuario', $papel->idUsuario);
         	
 		$sql->addColunaValor('foiExcluido', FALSE);
 		$sql->addColunaValor('dataCriacao', 'now()',TRUE);
@@ -141,11 +142,12 @@ class PapelDAO implements IPapelDAO{
 		$sql = new SqlUpdate('papel');
         
 		$foiExcluido = Shared::filtroFoiExcluido(FALSE);
-		$filtroID = Shared::filtroID($papel->getId());
+		$filtroID = Shared::filtroID($papel->id);
 	
 		
-		$sql->addColunaValor('descricao', $papel->getDescricao());
-		$sql->addColunaValor('id_usuario', $papel->getIdUsuario());
+		$sql->addColunaValor('titulo', $papel->titulo);
+		$sql->addColunaValor('descricao', $papel->descricao);
+		$sql->addColunaValor('idUsuario', $papel->idUsuario);
         
 			
 		$sql->addColunaValor('foiExcluido', FALSE);
@@ -197,9 +199,10 @@ class PapelDAO implements IPapelDAO{
 	protected function readRow($row){
 		$papel = new Papel();
 		
-		$papel->id = (property_exists($row, 'id')) ? $row->id : NULL;
-		$papel->descricao = (property_exists($row, 'descricao')) ? $row->descricao : NULL;
-		$papel->idUsuario = (property_exists($row, 'id_usuario')) ? $row->id_usuario : NULL;
+		$papel->id = $row->id;
+		$papel->titulo = $row->titulo;
+		$papel->descricao = $row->descricao;
+		$papel->idUsuario = $row->idUsuario;
 
 		return $papel;
 	}

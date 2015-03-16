@@ -3,14 +3,15 @@
 	 * Objeto representa a tabela 'estoria'
 	 *
      	 * @author: Daniel Custódio da Silva
-     	 * @Data: 27/10/2014	 
+     	 * @Data: ${date}	 
 	 */
 
 class Estoria{
 
 	public $id;
+	public $titulo;
 	public $descricao;
-	public $ptsEstimados;
+	public $pontosEstimados;
 	public $dataInicio;
 	public $dataConclusao;
 	public $status;
@@ -22,17 +23,23 @@ class Estoria{
 	public function setId($id) {
 		$this->id = $id;
 	}
+	public function getTitulo() {
+		return $this->titulo;
+	}
+	public function setTitulo($titulo) {
+		$this->titulo = $titulo;
+	}
 	public function getDescricao() {
 		return $this->descricao;
 	}
 	public function setDescricao($descricao) {
 		$this->descricao = $descricao;
 	}
-	public function getPtsEstimados() {
-		return $this->ptsEstimados;
+	public function getPontosEstimados() {
+		return $this->pontosEstimados;
 	}
-	public function setPtsEstimados($ptsEstimados) {
-		$this->ptsEstimados = $ptsEstimados;
+	public function setPontosEstimados($pontosEstimados) {
+		$this->pontosEstimados = $pontosEstimados;
 	}
 	public function getDataInicio() {
 		return $this->dataInicio;

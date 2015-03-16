@@ -3,7 +3,7 @@
 	 * Objeto representa a tabela 'projeto'
 	 *
      	 * @author: Daniel Custódio da Silva
-     	 * @Data: 27/10/2014	 
+     	 * @Data: ${date}	 
 	 */
 
 class Projeto{

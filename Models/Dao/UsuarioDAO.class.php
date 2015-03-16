@@ -97,9 +97,9 @@ class UsuarioDAO implements IUsuarioDAO{
 	public function delete($id){
 		
 		$sql = new SqlUpdate('usuario');
-		
 		$sql->addColunaValor('foiExcluido', TRUE);
-		$sql->addColunaValor('dataExclusao', 'now()',TRUE);	
+		$sql->addColunaValor('dataExclusao', 'now()',TRUE);
+	
 		
 		$foiExcluido = Shared::filtroFoiExcluido(FALSE);        
 		$criterio = new Criterio($foiExcluido);
@@ -120,10 +120,10 @@ class UsuarioDAO implements IUsuarioDAO{
 		
 		$sql = new SqlInsert('usuario');
 		
-		$sql->addColunaValor('email', $usuario->getEmail());
-		$sql->addColunaValor('senha', $usuario->getSenha());
-		$sql->addColunaValor('nome', $usuario->getNome());
-		$sql->addColunaValor('foto', $usuario->getFoto());
+		$sql->addColunaValor('email', $usuario->email);
+		$sql->addColunaValor('senha', $usuario->senha);
+		$sql->addColunaValor('nome', $usuario->nome);
+		$sql->addColunaValor('foto', $usuario->foto);
         	
 		$sql->addColunaValor('foiExcluido', FALSE);
 		$sql->addColunaValor('dataCriacao', 'now()',TRUE);
@@ -143,13 +143,13 @@ class UsuarioDAO implements IUsuarioDAO{
 		$sql = new SqlUpdate('usuario');
         
 		$foiExcluido = Shared::filtroFoiExcluido(FALSE);
-		$filtroID = Shared::filtroID($usuario->getId());
+		$filtroID = Shared::filtroID($papel->id);
 	
 		
-		$sql->addColunaValor('email', $usuario->getEmail());
-		$sql->addColunaValor('senha', $usuario->getSenha());
-		$sql->addColunaValor('nome', $usuario->getNome());
-		$sql->addColunaValor('foto', $usuario->getFoto());
+		$sql->addColunaValor('email', $usuario->email);
+		$sql->addColunaValor('senha', $usuario->senha);
+		$sql->addColunaValor('nome', $usuario->nome);
+		$sql->addColunaValor('foto', $usuario->foto);
         
 			
 		$sql->addColunaValor('foiExcluido', FALSE);
@@ -201,11 +201,11 @@ class UsuarioDAO implements IUsuarioDAO{
 	protected function readRow($row){
 		$usuario = new Usuario();
 		
-		$usuario->id = (property_exists($row, 'id')) ? $row->id : NULL;
-		$usuario->email = (property_exists($row, 'email')) ? $row->email : NULL;
-		$usuario->senha = (property_exists($row, 'senha')) ? $row->senha : NULL;
-		$usuario->nome = (property_exists($row, 'nome')) ? $row->nome : NULL;
-		$usuario->foto = (property_exists($row, 'foto')) ? $row->foto : NULL;
+		$usuario->id = $row->id;
+		$usuario->email = $row->email;
+		$usuario->senha = $row->senha;
+		$usuario->nome = $row->nome;
+		$usuario->foto = $row->foto;
 
 		return $usuario;
 	}

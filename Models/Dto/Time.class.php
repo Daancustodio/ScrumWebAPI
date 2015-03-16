@@ -3,13 +3,13 @@
 	 * Objeto representa a tabela 'time'
 	 *
      	 * @author: Daniel Custódio da Silva
-     	 * @Data: 27/10/2014	 
+     	 * @Data: ${date}	 
 	 */
 
 class Time{
 
 	public $id;
-	public $descricao;
+	public $nome;
 	public $idUsuario;
 
 	public function getId() {
@@ -18,11 +18,11 @@ class Time{
 	public function setId($id) {
 		$this->id = $id;
 	}
-	public function getDescricao() {
-		return $this->descricao;
+	public function getNome() {
+		return $this->nome;
 	}
-	public function setDescricao($descricao) {
-		$this->descricao = $descricao;
+	public function setNome($nome) {
+		$this->nome = $nome;
 	}
 	public function getIdUsuario() {
 		return $this->idUsuario;

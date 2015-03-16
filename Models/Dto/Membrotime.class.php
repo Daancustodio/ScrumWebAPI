@@ -1,12 +1,12 @@
 <?php
 	/**
-	 * Objeto representa a tabela 'usuariopapeltime'
+	 * Objeto representa a tabela 'membrotime'
 	 *
      	 * @author: Daniel Custódio da Silva
-     	 * @Data: 27/10/2014	 
+     	 * @Data: ${date}	 
 	 */
 
-class Usuariopapeltime{
+class Membrotime{
 
 	public $id;
 	public $idPapel;
@@ -39,14 +39,14 @@ class Usuariopapeltime{
 	}
 		
 	/**
-	* Serializa o array de chave valor para um objeto Usuariopapeltime
+	* Serializa o array de chave valor para um objeto Membrotime
 	*
-	* @param: Array com chaves iguais aos nomes das propriedades da classe  Usuariopapeltime
-	* @return: Usuariopapeltime 
+	* @param: Array com chaves iguais aos nomes das propriedades da classe  Membrotime
+	* @return: Membrotime 
 	*/
-	public function setUsuariopapeltime(array $usuariopapeltime){
+	public function setMembrotime(array $membrotime){
        
-		foreach ($usuariopapeltime as $propriedade => $valor) {
+		foreach ($membrotime as $propriedade => $valor) {
 			$setFunction = 'set' . ucfirst($propriedade);
 			if (method_exists($this, $setFunction)){
 				call_user_func(array($this, $setFunction),$valor );

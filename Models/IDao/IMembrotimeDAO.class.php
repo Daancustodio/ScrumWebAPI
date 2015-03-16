@@ -3,16 +3,16 @@
  * Interface DAO
  *
  * @author: Daniel Cust√≥dio da Silva
- * @Data: 27/10/2014
+ * @Data: ${date}
  */
 
-interface IUsuariopapeltimeDAO{
+interface IMembrotimeDAO{
 
 	/**
 	 * Obtem registro por ID
 	 *
 	 * @param String $id primary key
-	 * @Return Usuariopapeltime 
+	 * @Return Membrotime 
 	 */
 	public function load($id);
 
@@ -30,23 +30,23 @@ interface IUsuariopapeltimeDAO{
 	
 	/**
  	 * Deletar por chave prim·ria
- 	 * @param usuariopapeltime primary key
+ 	 * @param membrotime primary key
  	 */
 	public function delete($id);
 	
 	/**
  	 * Insere dados na tabela
  	 *
- 	 * @param Usuariopapeltime usuariopapeltime
+ 	 * @param Membrotime membrotime
  	 */
-	public function insert($usuariopapeltime);
+	public function insert($membrotime);
 	
 	/**
  	 * Update dados na tabela
  	 *
- 	 * @param Usuariopapeltime usuariopapeltime
+ 	 * @param Membrotime membrotime
  	 */
-	public function update($usuariopapeltime);	
+	public function update($membrotime);	
 
 	/**
  	 * Delete todas as linhas

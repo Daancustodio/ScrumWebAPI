@@ -52,7 +52,7 @@ class SprintDAO implements ISprintDAO{
 		}*/
 	
 		$sql->setCriterio($criterio);		
-		
+
 		$stm = Conexao::prepare($sql->getInstrucaoSql());
 		$stm->execute();
 		return $stm->fetchAll();
@@ -97,9 +97,9 @@ class SprintDAO implements ISprintDAO{
 	public function delete($id){
 		
 		$sql = new SqlUpdate('sprint');
-		
 		$sql->addColunaValor('foiExcluido', TRUE);
-		$sql->addColunaValor('dataExclusao', 'now()',TRUE);	
+		$sql->addColunaValor('dataExclusao', 'now()',TRUE);
+	
 		
 		$foiExcluido = Shared::filtroFoiExcluido(FALSE);        
 		$criterio = new Criterio($foiExcluido);
@@ -114,25 +114,26 @@ class SprintDAO implements ISprintDAO{
  	 *
  	 * @param Sprint sprint
  	 */
-	public function insert($sprint){		
-		$sprint = $this->readRow($sprint);
+	public function insert($sprint){
+	
+		//$sprint = $this->readRow($sprint);
 		
 		$sql = new SqlInsert('sprint');
 		
-		$sql->addColunaValor('titulo', $sprint->getTitulo());
-		$sql->addColunaValor('descricao', $sprint->getDescricao());
-		$sql->addColunaValor('diasUteis', $sprint->getDiasUteis());
-		$sql->addColunaValor('diasCerimonias', $sprint->getDiasCerimonias());
-		$sql->addColunaValor('horasTrabDia', $sprint->getHorasTrabDia());
-		$sql->addColunaValor('foco', $sprint->getFoco());
-		$sql->addColunaValor('dataInicio', $sprint->getDataInicio());
-		$sql->addColunaValor('dataConclusao', $sprint->getDataConclusao());
-		$sql->addColunaValor('status', $sprint->getStatus());
-		$sql->addColunaValor('id_projeto', $sprint->getIdProjeto());
+		$sql->addColunaValor('titulo', $sprint->titulo);
+		$sql->addColunaValor('descricao', $sprint->descricao);
+		$sql->addColunaValor('diasUteis', $sprint->diasUteis);
+		$sql->addColunaValor('diasCerimonias', $sprint->diasCerimonias);
+		$sql->addColunaValor('horasTrabDia', $sprint->horasTrabDia);
+		$sql->addColunaValor('foco', $sprint->foco);
+		$sql->addColunaValor('dataInicio', $sprint->dataInicio);
+		$sql->addColunaValor('dataConclusao', $sprint->dataConclusao);
+		$sql->addColunaValor('status', $sprint->status);
+		$sql->addColunaValor('idProjeto', $sprint->idProjeto);
         	
 		$sql->addColunaValor('foiExcluido', FALSE);
 		$sql->addColunaValor('dataCriacao', 'now()',TRUE);
-		
+	
 		return $this->execute($sql->getInstrucaoSql());
 	}
 	
@@ -148,19 +149,19 @@ class SprintDAO implements ISprintDAO{
 		$sql = new SqlUpdate('sprint');
         
 		$foiExcluido = Shared::filtroFoiExcluido(FALSE);
-		$filtroID = Shared::filtroID($sprint->getId());
+		$filtroID = Shared::filtroID($papel->id);
 	
 		
-		$sql->addColunaValor('titulo', $sprint->getTitulo());
-		$sql->addColunaValor('descricao', $sprint->getDescricao());
-		$sql->addColunaValor('diasUteis', $sprint->getDiasUteis());
-		$sql->addColunaValor('diasCerimonias', $sprint->getDiasCerimonias());
-		$sql->addColunaValor('horasTrabDia', $sprint->getHorasTrabDia());
-		$sql->addColunaValor('foco', $sprint->getFoco());
-		$sql->addColunaValor('dataInicio', $sprint->getDataInicio());
-		$sql->addColunaValor('dataConclusao', $sprint->getDataConclusao());
-		$sql->addColunaValor('status', $sprint->getStatus());
-		$sql->addColunaValor('id_projeto', $sprint->getIdProjeto());
+		$sql->addColunaValor('titulo', $sprint->titulo);
+		$sql->addColunaValor('descricao', $sprint->descricao);
+		$sql->addColunaValor('diasUteis', $sprint->diasUteis);
+		$sql->addColunaValor('diasCerimonias', $sprint->diasCerimonias);
+		$sql->addColunaValor('horasTrabDia', $sprint->horasTrabDia);
+		$sql->addColunaValor('foco', $sprint->foco);
+		$sql->addColunaValor('dataInicio', $sprint->dataInicio);
+		$sql->addColunaValor('dataConclusao', $sprint->dataConclusao);
+		$sql->addColunaValor('status', $sprint->status);
+		$sql->addColunaValor('idProjeto', $sprint->idProjeto);
         
 			
 		$sql->addColunaValor('foiExcluido', FALSE);
@@ -212,17 +213,17 @@ class SprintDAO implements ISprintDAO{
 	protected function readRow($row){
 		$sprint = new Sprint();
 		
-		$sprint->id = (property_exists($row, 'id')) ? $row->id : NULL;
-		$sprint->titulo = (property_exists($row, 'titulo')) ? $row->titulo : NULL;
-		$sprint->descricao = (property_exists($row, 'descricao')) ? $row->descricao : NULL;
-		$sprint->diasUteis = (property_exists($row, 'diasUteis')) ? $row->diasUteis : NULL;
-		$sprint->diasCerimonias = (property_exists($row, 'diasCerimonias')) ? $row->diasCerimonias : NULL;
-		$sprint->horasTrabDia = (property_exists($row, 'horasTrabDia')) ? $row->horasTrabDia : NULL;
-		$sprint->foco = (property_exists($row, 'foco')) ? $row->foco : NULL;
-		$sprint->dataInicio = (property_exists($row, 'dataInicio')) ? $row->dataInicio : NULL;
-		$sprint->dataConclusao = (property_exists($row, 'dataConclusao')) ? $row->dataConclusao : NULL;
-		$sprint->status = (property_exists($row, 'status')) ? $row->status : NULL;
-		$sprint->idProjeto = (property_exists($row, 'id_projeto')) ? $row->id_projeto : NULL;
+		$sprint->id = $row->id;
+		$sprint->titulo = $row->titulo;
+		$sprint->descricao = $row->descricao;
+		$sprint->diasUteis = $row->diasUteis;
+		$sprint->diasCerimonias = $row->diasCerimonias;
+		$sprint->horasTrabDia = $row->horasTrabDia;
+		$sprint->foco = $row->foco;
+		$sprint->dataInicio = $row->dataInicio;
+		$sprint->dataConclusao = $row->dataConclusao;
+		$sprint->status = $row->status;
+		$sprint->idProjeto = $row->idProjeto;
 
 		return $sprint;
 	}

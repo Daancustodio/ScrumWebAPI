@@ -38,7 +38,7 @@ class TarefaDAO implements ITarefaDAO{
 	 */
 	public function loadByEstoria($idEstoria){
 		$sql = new SqlSelect('tarefa');
-		$filtroID = new Filtro('id_estoria', OperadorSql::OIGUAL, $idEstoria);
+		$filtroID = new Filtro('idEstoria', OperadorSql::OIGUAL, $idEstoria);
 		$foiExcluido = Shared::filtroFoiExcluido(false);
 		$criterio = new Criterio($foiExcluido);
 		$criterio->add($filtroID);
@@ -116,9 +116,9 @@ class TarefaDAO implements ITarefaDAO{
 	public function delete($id){
 		
 		$sql = new SqlUpdate('tarefa');
-		
 		$sql->addColunaValor('foiExcluido', TRUE);
-		$sql->addColunaValor('dataExclusao', 'now()',TRUE);	
+		$sql->addColunaValor('dataExclusao', 'now()',TRUE);
+	
 		
 		$foiExcluido = Shared::filtroFoiExcluido(FALSE);        
 		$criterio = new Criterio($foiExcluido);
@@ -139,16 +139,17 @@ class TarefaDAO implements ITarefaDAO{
 		
 		$sql = new SqlInsert('tarefa');
 		
-		$sql->addColunaValor('descricao', $tarefa->getDescricao());
-		$sql->addColunaValor('horasEstimativa', $tarefa->getHorasEstimativa());
-		$sql->addColunaValor('horasEfetiva', $tarefa->getHorasEfetiva());
-		$sql->addColunaValor('dataConclusao', $tarefa->getDataConclusao());
-		$sql->addColunaValor('obs', $tarefa->getObs());
-		$sql->addColunaValor('status', $tarefa->getStatus());
-		$sql->addColunaValor('dataInicio', $tarefa->getDataInicio());
-		$sql->addColunaValor('id_estoria', $tarefa->getIdEstoria());
-		$sql->addColunaValor('id_tipotarefa', $tarefa->getIdTipotarefa());
-		$sql->addColunaValor('id_usuarioPapelTime', $tarefa->getIdUsuarioPapelTime());
+		$sql->addColunaValor('titulo', $tarefa->titulo);
+		$sql->addColunaValor('descricao', $tarefa->descricao);
+		$sql->addColunaValor('horasEstimativa', $tarefa->horasEstimativa);
+		$sql->addColunaValor('horasEfetiva', $tarefa->horasEfetiva);
+		$sql->addColunaValor('dataConclusao', $tarefa->dataConclusao);
+		$sql->addColunaValor('obs', $tarefa->obs);
+		$sql->addColunaValor('status', $tarefa->status);
+		$sql->addColunaValor('dataInicio', $tarefa->dataInicio);
+		$sql->addColunaValor('idEstoria', $tarefa->idEstoria);
+		$sql->addColunaValor('idTipotarefa', $tarefa->idTipotarefa);
+		$sql->addColunaValor('idUsuarioPapelTime', $tarefa->idUsuarioPapelTime);
         	
 		$sql->addColunaValor('foiExcluido', FALSE);
 		$sql->addColunaValor('dataCriacao', 'now()',TRUE);
@@ -168,19 +169,20 @@ class TarefaDAO implements ITarefaDAO{
 		$sql = new SqlUpdate('tarefa');
         
 		$foiExcluido = Shared::filtroFoiExcluido(FALSE);
-		$filtroID = Shared::filtroID($tarefa->getId());
+		$filtroID = Shared::filtroID($papel->id);
 	
 		
-		$sql->addColunaValor('descricao', $tarefa->getDescricao());
-		$sql->addColunaValor('horasEstimativa', $tarefa->getHorasEstimativa());
-		$sql->addColunaValor('horasEfetiva', $tarefa->getHorasEfetiva());
-		$sql->addColunaValor('dataConclusao', $tarefa->getDataConclusao());
-		$sql->addColunaValor('obs', $tarefa->getObs());
-		$sql->addColunaValor('status', $tarefa->getStatus());
-		$sql->addColunaValor('dataInicio', $tarefa->getDataInicio());
-		$sql->addColunaValor('id_estoria', $tarefa->getIdEstoria());
-		$sql->addColunaValor('id_tipotarefa', $tarefa->getIdTipotarefa());
-		$sql->addColunaValor('id_usuarioPapelTime', $tarefa->getIdUsuarioPapelTime());
+		$sql->addColunaValor('titulo', $tarefa->titulo);
+		$sql->addColunaValor('descricao', $tarefa->descricao);
+		$sql->addColunaValor('horasEstimativa', $tarefa->horasEstimativa);
+		$sql->addColunaValor('horasEfetiva', $tarefa->horasEfetiva);
+		$sql->addColunaValor('dataConclusao', $tarefa->dataConclusao);
+		$sql->addColunaValor('obs', $tarefa->obs);
+		$sql->addColunaValor('status', $tarefa->status);
+		$sql->addColunaValor('dataInicio', $tarefa->dataInicio);
+		$sql->addColunaValor('idEstoria', $tarefa->idEstoria);
+		$sql->addColunaValor('idTipotarefa', $tarefa->idTipotarefa);
+		$sql->addColunaValor('idUsuarioPapelTime', $tarefa->idUsuarioPapelTime);
         
 			
 		$sql->addColunaValor('foiExcluido', FALSE);
@@ -232,17 +234,18 @@ class TarefaDAO implements ITarefaDAO{
 	protected function readRow($row){
 		$tarefa = new Tarefa();
 		
-		$tarefa->id = (property_exists($row, 'id')) ? $row->id : NULL;
-		$tarefa->descricao = (property_exists($row, 'descricao')) ? $row->descricao : NULL;
-		$tarefa->horasEstimativa = (property_exists($row, 'horasEstimativa')) ? $row->horasEstimativa : NULL;
-		$tarefa->horasEfetiva = (property_exists($row, 'horasEfetiva')) ? $row->horasEfetiva : NULL;
-		$tarefa->dataConclusao = (property_exists($row, 'dataConclusao')) ? $row->dataConclusao : NULL;
-		$tarefa->obs = (property_exists($row, 'obs')) ? $row->obs : NULL;
-		$tarefa->status = (property_exists($row, 'status')) ? $row->status : NULL;
-		$tarefa->dataInicio = (property_exists($row, 'dataInicio')) ? $row->dataInicio : NULL;
-		$tarefa->idEstoria = (property_exists($row, 'id_estoria')) ? $row->id_estoria : NULL;
-		$tarefa->idTipotarefa = (property_exists($row, 'id_tipotarefa')) ? $row->id_tipotarefa : NULL;
-		$tarefa->idUsuarioPapelTime = (property_exists($row, 'id_usuarioPapelTime')) ? $row->id_usuarioPapelTime : NULL;
+		$tarefa->id = $row->id;
+		$tarefa->titulo = $row->titulo;
+		$tarefa->descricao = $row->descricao;
+		$tarefa->horasEstimativa = $row->horasEstimativa;
+		$tarefa->horasEfetiva = $row->horasEfetiva;
+		$tarefa->dataConclusao = $row->dataConclusao;
+		$tarefa->obs = $row->obs;
+		$tarefa->status = $row->status;
+		$tarefa->dataInicio = $row->dataInicio;
+		$tarefa->idEstoria = $row->idEstoria;
+		$tarefa->idTipotarefa = $row->idTipotarefa;
+		$tarefa->idUsuarioPapelTime = $row->idUsuarioPapelTime;
 
 		return $tarefa;
 	}

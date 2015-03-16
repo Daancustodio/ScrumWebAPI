@@ -3,12 +3,13 @@
 	 * Objeto representa a tabela 'papel'
 	 *
      	 * @author: Daniel Custódio da Silva
-     	 * @Data: 27/10/2014	 
+     	 * @Data: ${date}	 
 	 */
 
 class Papel{
 
 	public $id;
+	public $titulo;
 	public $descricao;
 	public $idUsuario;
 
@@ -17,6 +18,12 @@ class Papel{
 	}
 	public function setId($id) {
 		$this->id = $id;
+	}
+	public function getTitulo() {
+		return $this->titulo;
+	}
+	public function setTitulo($titulo) {
+		$this->titulo = $titulo;
 	}
 	public function getDescricao() {
 		return $this->descricao;

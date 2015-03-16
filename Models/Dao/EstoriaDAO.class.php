@@ -38,7 +38,7 @@ class EstoriaDAO implements IEstoriaDAO{
 	 */
 	public function loadBySprint($idSprint){
 		$sql = new SqlSelect('estoria');
-		$filtroID = new Filtro('id_sprint', OperadorSql::OIGUAL, $idSprint);
+		$filtroID = new Filtro('idSprint', OperadorSql::OIGUAL, $idSprint);
 		$foiExcluido = Shared::filtroFoiExcluido(false);
 		$criterio = new Criterio($foiExcluido);
 		$criterio->add($filtroID);
@@ -116,13 +116,22 @@ class EstoriaDAO implements IEstoriaDAO{
 	public function delete($id){
 		
 		$sql = new SqlUpdate('estoria');
-		
 		$sql->addColunaValor('foiExcluido', TRUE);
-		$sql->addColunaValor('dataExclusao', 'now()',TRUE);	
+		$sql->addColunaValor('dataExclusao', 'now()',TRUE);
+	
 		
 		$foiExcluido = Shared::filtroFoiExcluido(FALSE);        
 		$criterio = new Criterio($foiExcluido);
-		$criterio->add(new Filtro('id', OperadorSql::OIGUAL, $id));  	
+		
+		if (!is_null($idUsuarioLogado)) {			
+			$filtroUsuarioLogado = Shared::filtroUsuarioLogado($idUsuarioLogado);
+			$filtroTodos = Shared::filtroUsuarioLogado(NULL);
+			$criterio->add($filtroUsuarioLogado);
+			$criterio->add($filtroTodos);
+		}else{
+			$filtroTodos = Shared::filtroUsuarioLogado(NULL);            
+			$criterio->add($filtroTodos);
+		}
 	
 		$sql->setCriterio($criterio);
 		return $this->execute($sql->getInstrucaoSql());
@@ -135,16 +144,17 @@ class EstoriaDAO implements IEstoriaDAO{
  	 */
 	public function insert($estoria){
 	
-		$estoria = $this->readRow($estoria);
+		//$estoria = $this->readRow($estoria);
 		
 		$sql = new SqlInsert('estoria');
 		
-		$sql->addColunaValor('descricao', $estoria->getDescricao());
-		$sql->addColunaValor('ptsEstimados', $estoria->getPtsEstimados());
-		$sql->addColunaValor('dataInicio', $estoria->getDataInicio());
-		$sql->addColunaValor('dataConclusao', $estoria->getDataConclusao());
-		$sql->addColunaValor('status', $estoria->getStatus());
-		$sql->addColunaValor('id_sprint', $estoria->getIdSprint());
+		$sql->addColunaValor('titulo', $estoria->titulo);
+		$sql->addColunaValor('descricao', $estoria->descricao);
+		$sql->addColunaValor('pontosEstimados', $estoria->pontosEstimados);
+		// $sql->addColunaValor('dataInicio', $estoria->dataInicio);
+		// $sql->addColunaValor('dataConclusao', $estoria->dataConclusao);
+		$sql->addColunaValor('status', $estoria->status);
+		$sql->addColunaValor('idSprint', $estoria->idSprint);
         	
 		$sql->addColunaValor('foiExcluido', FALSE);
 		$sql->addColunaValor('dataCriacao', 'now()',TRUE);
@@ -164,15 +174,16 @@ class EstoriaDAO implements IEstoriaDAO{
 		$sql = new SqlUpdate('estoria');
         
 		$foiExcluido = Shared::filtroFoiExcluido(FALSE);
-		$filtroID = Shared::filtroID($estoria->getId());
+		$filtroID = Shared::filtroID($papel->id);
 	
 		
-		$sql->addColunaValor('descricao', $estoria->getDescricao());
-		$sql->addColunaValor('ptsEstimados', $estoria->getPtsEstimados());
-		$sql->addColunaValor('dataInicio', $estoria->getDataInicio());
-		$sql->addColunaValor('dataConclusao', $estoria->getDataConclusao());
-		$sql->addColunaValor('status', $estoria->getStatus());
-		$sql->addColunaValor('id_sprint', $estoria->getIdSprint());
+		$sql->addColunaValor('titulo', $estoria->titulo);
+		$sql->addColunaValor('descricao', $estoria->descricao);
+		$sql->addColunaValor('pontosEstimados', $estoria->pontosEstimados);
+		$sql->addColunaValor('dataInicio', $estoria->dataInicio);
+		$sql->addColunaValor('dataConclusao', $estoria->dataConclusao);
+		$sql->addColunaValor('status', $estoria->status);
+		$sql->addColunaValor('idSprint', $estoria->idSprint);
         
 			
 		$sql->addColunaValor('foiExcluido', FALSE);
@@ -224,13 +235,14 @@ class EstoriaDAO implements IEstoriaDAO{
 	protected function readRow($row){
 		$estoria = new Estoria();
 		
-		$estoria->id = (property_exists($row, 'id')) ? $row->id : NULL;
-		$estoria->descricao = (property_exists($row, 'descricao')) ? $row->descricao : NULL;
-		$estoria->ptsEstimados = (property_exists($row, 'ptsEstimados')) ? $row->ptsEstimados : NULL;
-		$estoria->dataInicio = (property_exists($row, 'dataInicio')) ? $row->dataInicio : NULL;
-		$estoria->dataConclusao = (property_exists($row, 'dataConclusao')) ? $row->dataConclusao : NULL;
-		$estoria->status = (property_exists($row, 'status')) ? $row->status : NULL;
-		$estoria->idSprint = (property_exists($row, 'id_sprint')) ? $row->id_sprint : NULL;
+		$estoria->id = $row->id;
+		$estoria->titulo = $row->titulo;
+		$estoria->descricao = $row->descricao;
+		$estoria->pontosEstimados = $row->pontosEstimados;
+		$estoria->dataInicio = $row->dataInicio;
+		$estoria->dataConclusao = $row->dataConclusao;
+		$estoria->status = $row->status;
+		$estoria->idSprint = $row->idSprint;
 
 		return $estoria;
 	}

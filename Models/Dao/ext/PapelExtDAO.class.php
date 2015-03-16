@@ -3,7 +3,7 @@
  * Class para manipular a tabela 'papel'. Database Mysql.
  *
  * @author: Daniel Custódio da Silva
- * @Data: 28/10/2014
+ * @Data: ${date}
  */
 
 include_once '/../PapelDAO.class.php';

@@ -97,9 +97,9 @@ class TimeDAO implements ITimeDAO{
 	public function delete($id){
 		
 		$sql = new SqlUpdate('time');
-		
 		$sql->addColunaValor('foiExcluido', TRUE);
-		$sql->addColunaValor('dataExclusao', 'now()',TRUE);	
+		$sql->addColunaValor('dataExclusao', 'now()',TRUE);
+	
 		
 		$foiExcluido = Shared::filtroFoiExcluido(FALSE);        
 		$criterio = new Criterio($foiExcluido);
@@ -116,12 +116,12 @@ class TimeDAO implements ITimeDAO{
  	 */
 	public function insert($time){
 	
-		$time = $this->readRow($time);
+		//$time = $this->readRow($time);
 		
 		$sql = new SqlInsert('time');
 		
-		$sql->addColunaValor('descricao', $time->getDescricao());
-		$sql->addColunaValor('id_usuario', $time->getIdUsuario());
+		$sql->addColunaValor('nome', $time->nome);
+		//$sql->addColunaValor('idUsuario', $time->idUsuario);
         	
 		$sql->addColunaValor('foiExcluido', FALSE);
 		$sql->addColunaValor('dataCriacao', 'now()',TRUE);
@@ -141,11 +141,11 @@ class TimeDAO implements ITimeDAO{
 		$sql = new SqlUpdate('time');
         
 		$foiExcluido = Shared::filtroFoiExcluido(FALSE);
-		$filtroID = Shared::filtroID($time->getId());
+		$filtroID = Shared::filtroID($papel->id);
 	
 		
-		$sql->addColunaValor('descricao', $time->getDescricao());
-		$sql->addColunaValor('id_usuario', $time->getIdUsuario());
+		$sql->addColunaValor('nome', $time->nome);
+		$sql->addColunaValor('idUsuario', $time->idUsuario);
         
 			
 		$sql->addColunaValor('foiExcluido', FALSE);
@@ -197,9 +197,9 @@ class TimeDAO implements ITimeDAO{
 	protected function readRow($row){
 		$time = new Time();
 		
-		$time->id = (property_exists($row, 'id')) ? $row->id : NULL;
-		$time->descricao = (property_exists($row, 'descricao')) ? $row->descricao : NULL;
-		$time->idUsuario = (property_exists($row, 'id_usuario')) ? $row->id_usuario : NULL;
+		$time->id = $row->id;
+		$time->nome = $row->nome;
+		$time->idUsuario = $row->idUsuario;
 
 		return $time;
 	}

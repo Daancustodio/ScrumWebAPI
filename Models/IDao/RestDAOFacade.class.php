@@ -9,6 +9,7 @@ class RestDAOFacade {
         public static function register($restserver)
         {
 				$restserver->addClass('EstoriaController', '/dao');
+		$restserver->addClass('MembrotimeController', '/dao');
 		$restserver->addClass('PapelController', '/dao');
 		$restserver->addClass('ProjetoController', '/dao');
 		$restserver->addClass('SprintController', '/dao');
@@ -16,7 +17,6 @@ class RestDAOFacade {
 		$restserver->addClass('TimeController', '/dao');
 		$restserver->addClass('TipotarefaController', '/dao');
 		$restserver->addClass('UsuarioController', '/dao');
-		$restserver->addClass('UsuariopapeltimeController', '/dao');
 
         }
 }
