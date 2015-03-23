@@ -62,4 +62,16 @@ include_once '/../Models/IDao/DAOFactory.class.php';
 		formatJson($result);
 	});
 
+	/**
+	 * Busca Estoria por ID
+	 * @author Daniel Custódio
+	 * @url GET /estoriaBySprint/:id
+	 */
+	$app->get('/estoriasBySprint/:id', function($id){		
+		
+		$result = DAOFactory::getEstoriaDAO()->loadBySprint($id);
+                
+		formatJson($result);
+	});
+
 	

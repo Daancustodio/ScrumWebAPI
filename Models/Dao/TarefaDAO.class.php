@@ -148,7 +148,7 @@ class TarefaDAO implements ITarefaDAO{
 		$sql->addColunaValor('status', $tarefa->status);
 		$sql->addColunaValor('dataInicio', $tarefa->dataInicio);
 		$sql->addColunaValor('idEstoria', $tarefa->idEstoria);
-		$sql->addColunaValor('idTipotarefa', $tarefa->idTipotarefa);
+		$sql->addColunaValor('idTipoTarefa', $tarefa->idTipotarefa);
 		$sql->addColunaValor('idUsuarioPapelTime', $tarefa->idUsuarioPapelTime);
         	
 		$sql->addColunaValor('foiExcluido', FALSE);
@@ -234,18 +234,18 @@ class TarefaDAO implements ITarefaDAO{
 	protected function readRow($row){
 		$tarefa = new Tarefa();
 		
-		$tarefa->id = $row->id;
-		$tarefa->titulo = $row->titulo;
-		$tarefa->descricao = $row->descricao;
-		$tarefa->horasEstimativa = $row->horasEstimativa;
-		$tarefa->horasEfetiva = $row->horasEfetiva;
-		$tarefa->dataConclusao = $row->dataConclusao;
-		$tarefa->obs = $row->obs;
-		$tarefa->status = $row->status;
-		$tarefa->dataInicio = $row->dataInicio;
-		$tarefa->idEstoria = $row->idEstoria;
-		$tarefa->idTipotarefa = $row->idTipotarefa;
-		$tarefa->idUsuarioPapelTime = $row->idUsuarioPapelTime;
+		$tarefa->id = (property_exists($row,'id')) ? $row->id : null;
+		$tarefa->titulo = (property_exists($row,'titulo')) ? $row->titulo : null;
+		$tarefa->descricao = (property_exists($row,'descricao')) ? $row->descricao : null;
+		$tarefa->horasEstimativa = (property_exists($row,'horasEstimativa')) ? $row->horasEstimativa : null;
+		$tarefa->horasEfetiva = (property_exists($row,'horasEfetiva')) ? $row->horasEfetiva : null;
+		$tarefa->dataConclusao = (property_exists($row,'dataConclusao')) ? $row->dataConclusao : null;
+		$tarefa->obs = (property_exists($row,'obs')) ? $row->obs : null;
+		$tarefa->status = (property_exists($row,'status')) ? $row->status : null;
+		$tarefa->dataInicio = (property_exists($row,'dataInicio')) ? $row->dataInicio : null;
+		$tarefa->idEstoria = (property_exists($row,'idEstoria')) ? $row->idEstoria : null;
+		$tarefa->idTipotarefa = (property_exists($row,'idTipoTarefa')) ? $row->idTipoTarefa : null;
+		$tarefa->idUsuarioPapelTime = (property_exists($row,'idUsuarioPapelTime')) ? $row->idUsuarioPapelTime : null;
 
 		return $tarefa;
 	}

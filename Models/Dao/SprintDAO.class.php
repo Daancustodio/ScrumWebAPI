@@ -149,7 +149,7 @@ class SprintDAO implements ISprintDAO{
 		$sql = new SqlUpdate('sprint');
         
 		$foiExcluido = Shared::filtroFoiExcluido(FALSE);
-		$filtroID = Shared::filtroID($papel->id);
+		$filtroID = Shared::filtroID($sprint->id);
 	
 		
 		$sql->addColunaValor('titulo', $sprint->titulo);
