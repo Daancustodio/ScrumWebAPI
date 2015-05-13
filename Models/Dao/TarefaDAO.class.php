@@ -5,9 +5,9 @@
  * @author: Daniel CustÃ³dio da Silva
  * @Data: 28/10/2014
  */
-include_once '/../IDao/ITarefaDAO.class.php';
-include_once '/../Dto/Tarefa.class.php';
-include_once '/../QueryObject/IncludeQO.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/Models/IDao/ITarefaDAO.class.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/Models/Dto/Tarefa.class.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/Models/QueryObject/IncludeQO.php';
 
 class TarefaDAO implements ITarefaDAO{
 
@@ -89,7 +89,7 @@ class TarefaDAO implements ITarefaDAO{
 		//filtros
 		$foiExcluido = Shared::filtroFoiExcluido(false);		
 		
-		//critério
+		//critï¿½rio
 		$criterio = new Criterio($foiExcluido);
 		if (!is_null($idUsuarioLogado)) {			
 			$filtroUsuarioLogado = Shared::filtroUsuarioLogado($idUsuarioLogado);
@@ -110,7 +110,7 @@ class TarefaDAO implements ITarefaDAO{
 	}
 	
 	/**
- 	 * Deletar por chave primária
+ 	 * Deletar por chave primï¿½ria
  	 * @param tarefa primary key
  	 */
 	public function delete($id){

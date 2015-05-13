@@ -5,9 +5,9 @@
  * @author: Daniel CustÃ³dio da Silva
  * @Data: 28/10/2014
  */
-include_once '/../IDao/IProjetoDAO.class.php';
-include_once '/../Dto/Projeto.class.php';
-include_once '/../QueryObject/IncludeQO.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/Models/IDao/IProjetoDAO.class.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/Models/Dto/Projeto.class.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/Models/QueryObject/IncludeQO.php';
 
 class ProjetoDAO implements IProjetoDAO{
 
@@ -70,7 +70,7 @@ class ProjetoDAO implements IProjetoDAO{
 		//filtros
 		$foiExcluido = Shared::filtroFoiExcluido(false);		
 		
-		//critério
+		//critï¿½rio
 		$criterio = new Criterio($foiExcluido);
 		if (!is_null($idUsuarioLogado)) {			
 			$filtroUsuarioLogado = Shared::filtroUsuarioLogado($idUsuarioLogado);
@@ -91,7 +91,7 @@ class ProjetoDAO implements IProjetoDAO{
 	}
 	
 	/**
- 	 * Deletar por chave primária
+ 	 * Deletar por chave primï¿½ria
  	 * @param projeto primary key
  	 */
 	public function delete($id){

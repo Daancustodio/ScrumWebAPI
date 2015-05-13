@@ -5,11 +5,24 @@
 */
 class DBConfig
 {
-	//private static $host 	= 'localhost';
-        private static $host = 'localhost:3306';
-        private static $dbName 	= 'bancoscrum';
+	
+	/*private static $host = 'localhost:3306';
+    private static $dbName 	= 'bancoscrum';
 	private static $pass 	= '';
 	private static $user 	= 'root';
+	*/
+	/*000webhost
+	private static $host = "mysql7.000webhost.com";
+	private static $dbName = "a6373706_scrum";
+	private static $user = "a6373706_scrum";
+    private static $pass = "8120scrum";
+	*/
+	
+	//hostinger
+	private static $host = "mysql.hostinger.com.br";
+	private static $dbName = "u200640578_scrum";
+	private static $user = "u200640578_scrum";
+    private static $pass = "8120scrum";
 	
 	/**
 	 * Obtem o nome do banco

@@ -7,6 +7,7 @@
  *
  * If you are using Composer, you can skip this step.
  */
+ 
 require 'libs/Slim/Slim.php';
 
 \Slim\Slim::registerAutoloader();

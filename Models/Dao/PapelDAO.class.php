@@ -5,9 +5,9 @@
  * @author: Daniel CustÃ³dio da Silva
  * @Data: 28/10/2014
  */
-include_once '/../IDao/IPapelDAO.class.php';
-include_once '/../Dto/Papel.class.php';
-include_once '/../QueryObject/IncludeQO.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/Models/IDao/IPapelDAO.class.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/Models/Dto/Papel.class.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/Models/QueryObject/IncludeQO.php';
 
 class PapelDAO implements IPapelDAO{
 
@@ -70,7 +70,7 @@ class PapelDAO implements IPapelDAO{
 		//filtros
 		$foiExcluido = Shared::filtroFoiExcluido(false);		
 		
-		//critério
+		//critï¿½rio
 		$criterio = new Criterio($foiExcluido);
 		if (!is_null($idUsuarioLogado)) {			
 			$filtroUsuarioLogado = Shared::filtroUsuarioLogado($idUsuarioLogado);
@@ -91,7 +91,7 @@ class PapelDAO implements IPapelDAO{
 	}
 	
 	/**
- 	 * Deletar por chave primária
+ 	 * Deletar por chave primï¿½ria
  	 * @param papel primary key
  	 */
 	public function delete($id){

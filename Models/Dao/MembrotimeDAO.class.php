@@ -5,9 +5,9 @@
  * @author: Daniel CustÃ³dio da Silva
  * @Data: 28/10/2014
  */
-include_once '/../IDao/IMembrotimeDAO.class.php';
-include_once '/../Dto/Membrotime.class.php';
-include_once '/../QueryObject/IncludeQO.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/Models/IDao/IMembrotimeDAO.class.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/Models/Dto/Membrotime.class.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/Models/QueryObject/IncludeQO.php';
 
 class MembrotimeDAO implements IMembrotimeDAO{
 
@@ -71,7 +71,7 @@ class MembrotimeDAO implements IMembrotimeDAO{
 		//filtros
 		$foiExcluido = Shared::filtroFoiExcluido(false);		
 		
-		//critério
+		//critï¿½rio
 		$criterio = new Criterio($foiExcluido);
 		if (!is_null($idUsuarioLogado)) {			
 			$filtroUsuarioLogado = Shared::filtroUsuarioLogado($idUsuarioLogado);
@@ -94,7 +94,7 @@ class MembrotimeDAO implements IMembrotimeDAO{
 	}
 	
 	/**
- 	 * Deletar por chave primária
+ 	 * Deletar por chave primï¿½ria
  	 * @param membrotime primary key
  	 */
 	public function delete($id){

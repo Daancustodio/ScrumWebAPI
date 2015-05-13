@@ -8,15 +8,15 @@
 
 
 
-include_once '/../Dao/ext/EstoriaExtDAO.class.php';
-include_once '/../Dao/ext/MembrotimeExtDAO.class.php';
-include_once '/../Dao/ext/PapelExtDAO.class.php';
-include_once '/../Dao/ext/ProjetoExtDAO.class.php';
-include_once '/../Dao/ext/SprintExtDAO.class.php';
-include_once '/../Dao/ext/TarefaExtDAO.class.php';
-include_once '/../Dao/ext/TimeExtDAO.class.php';
-include_once '/../Dao/ext/TipotarefaExtDAO.class.php';
-include_once '/../Dao/ext/UsuarioExtDAO.class.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/Models/Dao/ext/EstoriaExtDAO.class.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/Models/Dao/ext/MembrotimeExtDAO.class.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/Models/Dao/ext/PapelExtDAO.class.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/Models/Dao/ext/ProjetoExtDAO.class.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/Models/Dao/ext/SprintExtDAO.class.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/Models/Dao/ext/TarefaExtDAO.class.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/Models/Dao/ext/TimeExtDAO.class.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/Models/Dao/ext/TipotarefaExtDAO.class.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/Models/Dao/ext/UsuarioExtDAO.class.php';
 
 
 class DAOFactory{

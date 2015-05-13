@@ -5,9 +5,9 @@
  * @author: Daniel CustÃ³dio da Silva
  * @Data: 28/10/2014
  */
-include_once '/../IDao/ITimeDAO.class.php';
-include_once '/../Dto/Time.class.php';
-include_once '/../QueryObject/IncludeQO.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/Models/IDao/ITimeDAO.class.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/Models/Dto/Time.class.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/Models/QueryObject/IncludeQO.php';
 
 class TimeDAO implements ITimeDAO{
 
@@ -70,7 +70,7 @@ class TimeDAO implements ITimeDAO{
 		//filtros
 		$foiExcluido = Shared::filtroFoiExcluido(false);		
 		
-		//critério
+		//critï¿½rio
 		$criterio = new Criterio($foiExcluido);
 		if (!is_null($idUsuarioLogado)) {			
 			$filtroUsuarioLogado = Shared::filtroUsuarioLogado($idUsuarioLogado);
@@ -91,7 +91,7 @@ class TimeDAO implements ITimeDAO{
 	}
 	
 	/**
- 	 * Deletar por chave primária
+ 	 * Deletar por chave primï¿½ria
  	 * @param time primary key
  	 */
 	public function delete($id){
@@ -141,7 +141,7 @@ class TimeDAO implements ITimeDAO{
 		$sql = new SqlUpdate('time');
         
 		$foiExcluido = Shared::filtroFoiExcluido(FALSE);
-		$filtroID = Shared::filtroID($papel->id);
+		$filtroID = Shared::filtroID($time->id);
 	
 		
 		$sql->addColunaValor('nome', $time->nome);

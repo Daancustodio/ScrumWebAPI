@@ -1,6 +1,7 @@
 <?php
+$pathh = $_SERVER['DOCUMENT_ROOT'] . '/Models/IDao/DAOFactory.class.php';
 
-include_once '/../Models/IDao/DAOFactory.class.php';
+include_once ($pathh);
 
 	$rota = '/time';
 	

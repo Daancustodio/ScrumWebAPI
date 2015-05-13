@@ -6,7 +6,7 @@
  * @Data: ${date}
  */
 
-include_once '/../UsuarioDAO.class.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/Models/Dao/UsuarioDAO.class.php';
 
 class UsuarioExtDAO extends UsuarioDAO{
 

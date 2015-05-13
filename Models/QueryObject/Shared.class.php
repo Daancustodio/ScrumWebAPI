@@ -1,7 +1,7 @@
 <?php
 
 include_once 'Filtro.class.php';
-include_once '/../../libs/AutoLoaderBiblioteca.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/libs/AutoLoaderBiblioteca.php';
 use zpt\oobo\form\SelectOption;
 use zpt\oobo\form\Select;
 

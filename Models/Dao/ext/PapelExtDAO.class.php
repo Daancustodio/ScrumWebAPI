@@ -6,7 +6,7 @@
  * @Data: ${date}
  */
 
-include_once '/../PapelDAO.class.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/Models/Dao/PapelDAO.class.php';
 
 class PapelExtDAO extends PapelDAO{
 

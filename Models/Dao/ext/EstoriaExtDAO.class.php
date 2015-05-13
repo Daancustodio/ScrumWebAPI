@@ -6,7 +6,7 @@
  * @Data: ${date}
  */
 
-include_once '/../EstoriaDAO.class.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/Models/Dao/EstoriaDAO.class.php';
 
 class EstoriaExtDAO extends EstoriaDAO{
 

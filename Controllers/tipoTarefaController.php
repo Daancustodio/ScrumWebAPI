@@ -1,6 +1,6 @@
 <?php
 
-include_once '/../Models/IDao/DAOFactory.class.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/Models/IDao/DAOFactory.class.php';
 
 	$rota = '/tipoTarefa';
 	

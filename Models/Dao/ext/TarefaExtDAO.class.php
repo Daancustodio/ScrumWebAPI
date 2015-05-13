@@ -6,7 +6,7 @@
  * @Data: ${date}
  */
 
-include_once '/../TarefaDAO.class.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/Models/Dao/TarefaDAO.class.php';
 
 class TarefaExtDAO extends TarefaDAO{
 
